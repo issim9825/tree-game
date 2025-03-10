@@ -15,11 +15,11 @@ JUMP_STRENGTH = -10 # negative value makes the player jump up
 WHITE = (255, 255, 255)
 
 # Load assets
-player_img = image.load("player.png")  # Replace with your pixel art character
-background_img = image.load("background.png")  # Replace with your pixel art background
-tree_img = image.load("tree.png")  # Replace with a pixel-art tree image
+player_img = image.load("assets/img/player.png")  # Replace with your pixel art character
+background_img = image.load("assets/img/background.png")  # Replace with your pixel art background
+tree_img = image.load("assets/img/tree.png")  # Replace with a pixel-art tree image
 
-rand_tree_pos = (randint(0, 800), randint(225,235))
+rand_tree_pos = (randint(0, 790), randint(225,235))
 tree_positions = [rand_tree_pos]
 
 # Scale assets
@@ -50,7 +50,7 @@ camera_x = 0 # Camera position (scrool offset)
 
 # Create game window
 screen = display.set_mode((WIDTH, HEIGHT))
-display.set_caption("Side Scrolling Pixel Art Game")
+display.set_caption("Three collecting")
 
 # Game Loop
 running = True
@@ -84,14 +84,15 @@ while running:
         player_y = ground_level
         is_jumping = False
 
+
     # Draw everything
     screen.blit(background_img, (0, 0))
     for pos in tree_positions:
         # Collect trees
-        if pos[0] in range(player_x-5, player_x+5):
+        if pos[0] in range(player_x-5, player_x+5) and not player_y < pos[1]:
             visible_tree = False
-            tree_positions.append((randint(-10, 800), randint(225, 260)))
-            tid.sleep(0.01)
+            tree_positions.append((randint(-10, 790), randint(225, 260)))
+            tid.sleep(0.05)
             tree_positions.remove(pos)
             tree_counter += 1
         # Draw trees
