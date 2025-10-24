@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Run Python Game in Browser</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    <h2>Python Game in Browser (Pyodide)</h2>
+    <button id="run">Run Game</button>
+    <pre id="output"></pre>
+
+    <script>
+      async function main() {
+        let pyodide = await loadPyodide();
+        await pyodide.loadPackage(["micropip"]);
+
+        document.getElementById("run").onclick = async () => {
+          document.getElementById("output").textContent =
+            "Running game.py...\n";
+          const response = await fetch("game.py");
+          const code = await response.text();
+          try {
+            const result = await pyodide.runPythonAsync(code);
+            document.getElementById("output").textContent +=
+              result || "Game finished.";
+          } catch (err) {
+            document.getElementById("output").textContent += "\nError:\n" + err;
+          }
+        };
+      }
+      main();
+    </script>
+  </body>
+</html>
