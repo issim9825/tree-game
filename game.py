@@ -3,19 +3,20 @@ from pygame import *
 from random import randint
 import time as tid
 
+
+# Initialize Pygame
+init()
+
+# Game Constants
+WIDTH, HEIGHT = 800, 400
+FPS = 60
+GRAVITY = 0.5
+JUMP_STRENGTH = -10
+# Colors
+WHITE = (255, 255, 255)
+
+
 async def main():
-    # Initialize Pygame
-    init()
-
-    # Game Constants
-    WIDTH, HEIGHT = 800, 400
-    FPS = 60
-    GRAVITY = 0.5
-    JUMP_STRENGTH = -10
-
-    # Colors
-    WHITE = (255, 255, 255)
-
     # Load assets
     player_img = image.load("assets/img/player.png")
     background_img = image.load("assets/img/background.png")
