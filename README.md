@@ -16,8 +16,3 @@ like Unity or Unreal Engine for large-scale games
 - levels
 - etc..
 
-
-Troubleshooting:
-
-- If the workflow fails with authentication errors, double-check that `HEROKU_API_KEY` is correct and has deploy access.
-- If the Heroku slug is too large because `build/web` contains many binary assets, consider using container deploy (`heroku container:push`) or trimming large files from the repo.
